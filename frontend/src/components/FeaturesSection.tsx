@@ -84,9 +84,9 @@ export default function FeaturesSection() {
             <p className="text-gray-400 text-sm mb-8 leading-relaxed h-16">
               {t('features.card3Desc')}
             </p>
-            <button onClick={() => alert("Token launch and swap interface coming soon!")} className="text-primary font-bold text-sm flex items-center gap-2 hover:text-white transition-colors">
+            <a href="https://pump.fun/coin/2iqdyuBEtNeR15PtmuWAZBorK1hEmWhYnpY71j42pump" target="_blank" rel="noopener noreferrer" className="text-primary font-bold text-sm flex items-center gap-2 hover:text-white transition-colors">
               {t('features.card3Link')}
-            </button>
+            </a>
           </motion.div>
         </div>
 
