@@ -2,6 +2,7 @@ import { type ReactNode, useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { createDefaultAddressSelector, createDefaultAuthorizationResultCache, SolanaMobileWalletAdapter } from '@solana-mobile/wallet-adapter-mobile';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl } from '@solana/web3.js';
 import '@solana/wallet-adapter-react-ui/styles.css';
@@ -12,6 +13,16 @@ export function Web3Provider({ children }: { children: ReactNode }) {
 
   const wallets = useMemo(
     () => [
+      new SolanaMobileWalletAdapter({
+        addressSelector: createDefaultAddressSelector(),
+        appIdentity: {
+          name: 'Forest Ad Land',
+          uri: 'https://forest-ad-land.vercel.app',
+          icon: '/assets/logo.png',
+        },
+        authorizationResultCache: createDefaultAuthorizationResultCache(),
+        cluster: 'devnet',
+      }),
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
     ],

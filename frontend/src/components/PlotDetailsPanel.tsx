@@ -89,7 +89,7 @@ export default function PlotDetailsPanel({ plot, onClose, onPlotUpdated }: PlotD
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: '100%', opacity: 0 }}
           transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-          className="absolute top-4 right-4 w-[380px] bg-[#1a1a1a]/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 shadow-2xl z-20 flex flex-col max-h-[calc(100vh-2rem)] overflow-y-auto"
+          className="absolute top-20 md:top-4 left-4 right-4 md:left-auto md:right-4 md:w-[380px] bg-[#1a1a1a]/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 shadow-2xl z-20 flex flex-col max-h-[calc(100vh-6rem)] md:max-h-[calc(100vh-2rem)] overflow-y-auto"
         >
           <div className="flex justify-between items-start mb-8">
             <div>
