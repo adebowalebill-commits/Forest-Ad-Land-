@@ -8,7 +8,7 @@ import './i18n'
 
 // Add global polyfill for Buffer since @solana/web3.js requires it
 import { Buffer } from 'buffer';
-window.Buffer = window.Buffer || Buffer;
+(window as any).Buffer = (window as any).Buffer || Buffer;
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

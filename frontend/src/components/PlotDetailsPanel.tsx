@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Buffer } from 'buffer';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { MapPin, User, Tag, Image as ImageIcon, Link as LinkIcon, ExternalLink, X, Navigation } from 'lucide-react';
