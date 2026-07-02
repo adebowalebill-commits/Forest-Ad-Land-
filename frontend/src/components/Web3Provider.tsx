@@ -21,7 +21,10 @@ export function Web3Provider({ children }: { children: ReactNode }) {
           icon: '/assets/logo.png',
         },
         authorizationResultCache: createDefaultAuthorizationResultCache(),
-        cluster: 'devnet',
+        cluster: WalletAdapterNetwork.Devnet,
+        onWalletNotFound: (mobileWalletAdapter) => {
+          console.log('Mobile wallet not found', mobileWalletAdapter);
+        }
       }),
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
