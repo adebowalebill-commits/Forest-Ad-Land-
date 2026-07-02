@@ -26,10 +26,17 @@ app.use('/api/marketplace', marketplaceRoutes);
 app.use('/api/payments', paymentsRoutes);
 
 // Health check
+app.get('/api', (req, res) => {
+  res.send('Forest Ad Land API is running on Vercel');
+});
 app.get('/', (req, res) => {
   res.send('Forest Ad Land API is running');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+export default app;
