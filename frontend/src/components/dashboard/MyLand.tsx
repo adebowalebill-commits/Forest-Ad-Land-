@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { MapPin, Image as ImageIcon, ExternalLink } from 'lucide-react';
 import { useWallet } from '@solana/wallet-adapter-react';
+import { useTranslation } from 'react-i18next';
 import ManageAdModal from './ManageAdModal';
 import { api } from '../../lib/api';
 
 export default function MyLand() {
+  const { t } = useTranslation();
   const { publicKey } = useWallet();
   const [selectedPlot, setSelectedPlot] = useState<any | null>(null);
   const [myPlots, setMyPlots] = useState<any[]>([]);

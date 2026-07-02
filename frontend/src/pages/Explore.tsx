@@ -11,6 +11,8 @@ export interface PlotData {
   status: 'available' | 'owned';
   owner?: string;
   price?: number;
+  adImageUrl?: string;
+  adLinkUrl?: string;
 }
 
 export default function Explore() {
