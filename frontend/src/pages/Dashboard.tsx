@@ -6,10 +6,12 @@ import Navbar from '../components/Navbar';
 import DashboardOverview from '../components/dashboard/DashboardOverview';
 import MyLand from '../components/dashboard/MyLand';
 
+import AdEngine from '../components/dashboard/AdEngine';
+
 export default function Dashboard() {
   const { connected } = useWallet();
   const { setVisible } = useWalletModal();
-  const [activeTab, setActiveTab] = useState<'overview' | 'myland'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'myland' | 'adengine'>('overview');
 
   return (
     <div className="bg-darkbg min-h-screen text-white font-sans selection:bg-primary/20 flex flex-col pt-24 relative overflow-hidden">
@@ -42,10 +44,10 @@ export default function Dashboard() {
             <h1 className="text-4xl font-bold tracking-tight">Control Center</h1>
             
             {/* Tabs */}
-            <div className="flex bg-white/5 p-1.5 rounded-full border border-white/10">
+            <div className="flex bg-white/5 p-1.5 rounded-full border border-white/10 overflow-x-auto no-scrollbar">
               <button 
                 onClick={() => setActiveTab('overview')}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all ${
+                className={`flex items-center whitespace-nowrap gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all ${
                   activeTab === 'overview' ? 'bg-white text-black shadow-lg' : 'text-gray-400 hover:text-white'
                 }`}
               >
@@ -53,17 +55,27 @@ export default function Dashboard() {
               </button>
               <button 
                 onClick={() => setActiveTab('myland')}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all ${
+                className={`flex items-center whitespace-nowrap gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all ${
                   activeTab === 'myland' ? 'bg-white text-black shadow-lg' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 <MapIcon size={18} /> My Land
               </button>
+              <button 
+                onClick={() => setActiveTab('adengine')}
+                className={`flex items-center whitespace-nowrap gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all ${
+                  activeTab === 'adengine' ? 'bg-primary text-white shadow-lg' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                Ad Engine
+              </button>
             </div>
           </div>
 
           <div className="animate-fade-in">
-            {activeTab === 'overview' ? <DashboardOverview /> : <MyLand />}
+            {activeTab === 'overview' && <DashboardOverview />}
+            {activeTab === 'myland' && <MyLand />}
+            {activeTab === 'adengine' && <AdEngine />}
           </div>
 
         </main>

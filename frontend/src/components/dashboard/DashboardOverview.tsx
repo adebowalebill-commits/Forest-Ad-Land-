@@ -8,22 +8,42 @@ export default function DashboardOverview() {
   const { t } = useTranslation();
   const { publicKey } = useWallet();
   const [plotsOwned, setPlotsOwned] = useState(0);
+  const [activeCampaigns, setActiveCampaigns] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchStats() {
       if (!publicKey) {
         setPlotsOwned(0);
+        setActiveCampaigns(0);
         setLoading(false);
         return;
       }
       
       try {
-        const properties = await api.getProperties();
+        const token = localStorage.getItem('token');
         const userAddress = publicKey.toBase58();
-        // Filter properties where the associated user's wallet_address matches the connected wallet
+
+        const properties = await api.getProperties();
         const userPlots = properties.filter((p: any) => p.users?.wallet_address === userAddress);
         setPlotsOwned(userPlots.length);
+
+        if (token) {
+          try {
+            const ads = await api.getMyAds(token);
+            // Count ads that are active and within date range
+            const now = new Date();
+            const active = ads.filter((ad: any) => {
+              const start = new Date(ad.start_date);
+              const end = new Date(ad.end_date);
+              return ad.status === 'Active' && now >= start && now <= end;
+            });
+            setActiveCampaigns(active.length);
+          } catch (e) {
+            console.error('Failed to fetch ads:', e);
+            setActiveCampaigns(0);
+          }
+        }
       } catch (error) {
         console.error('Failed to fetch user properties:', error);
         setPlotsOwned(0);
@@ -35,8 +55,7 @@ export default function DashboardOverview() {
     fetchStats();
   }, [publicKey]);
 
-  // Currently, active campaigns and rewards don't have backend tables yet, so we initialize to 0.
-  const activeCampaigns = 0;
+  // Currently, rewards don't have backend tables yet, so we initialize to 0.
   const totalRewards = 0;
   const recentActivity: any[] = []; // Empty for now until backend supports activity logs
 

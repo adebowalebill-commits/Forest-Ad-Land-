@@ -44,5 +44,32 @@ export const api = {
     });
     if (!res.ok) throw new Error('Failed to mint property');
     return res.json();
+  },
+
+  // --- Ads ---
+
+  // Fetch active ads for the connected user
+  async getMyAds(token: string) {
+    const res = await fetch(`${API_URL}/ads/me`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    if (!res.ok) throw new Error('Failed to fetch user campaigns');
+    return res.json();
+  },
+
+  // Create a new ad campaign
+  async createAd(token: string, target_property_id: string, media_url: string, target_url: string, start_date: string, end_date: string) {
+    const res = await fetch(`${API_URL}/ads/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ target_property_id, media_url, target_url, start_date, end_date })
+    });
+    if (!res.ok) throw new Error('Failed to create campaign');
+    return res.json();
   }
 };

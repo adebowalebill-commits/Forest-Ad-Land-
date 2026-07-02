@@ -39,10 +39,10 @@ router.post('/upload', verifyAuth, upload.single('creative'), async (req: any, r
 // @route   POST /api/ads/create
 // @desc    Create campaign and link to property
 router.post('/create', verifyAuth, async (req: any, res: any) => {
-  const { target_property_id, media_url, start_date, end_date } = req.body;
+  const { target_property_id, media_url, target_url, start_date, end_date } = req.body;
   const business_id = req.user.id;
 
-  if (!target_property_id || !media_url || !start_date || !end_date) {
+  if (!target_property_id || !media_url || !target_url || !start_date || !end_date) {
     return res.status(400).json({ error: 'Missing required campaign fields' });
   }
 
@@ -53,6 +53,7 @@ router.post('/create', verifyAuth, async (req: any, res: any) => {
         business_id,
         target_property_id,
         media_url,
+        target_url,
         start_date,
         end_date,
         status: 'Active'
@@ -91,6 +92,32 @@ router.get('/active', async (req, res) => {
     res.status(200).json(ads);
   } catch (error: any) {
     res.status(500).json({ error: 'Failed to fetch active ads', details: error.message });
+  }
+});
+
+// @route   GET /api/ads/me
+// @desc    Fetch active ad campaigns for the logged-in user
+router.get('/me', verifyAuth, async (req: any, res: any) => {
+  try {
+    const business_id = req.user.id;
+    const { data: ads, error } = await supabase
+      .from('ad_campaigns')
+      .select(`
+        campaign_id,
+        media_url,
+        target_url,
+        status,
+        start_date,
+        end_date,
+        target_property_id,
+        properties (x_coord, y_coord)
+      `)
+      .eq('business_id', business_id);
+
+    if (error) throw error;
+    res.status(200).json(ads);
+  } catch (error: any) {
+    res.status(500).json({ error: 'Failed to fetch user campaigns', details: error.message });
   }
 });
 
