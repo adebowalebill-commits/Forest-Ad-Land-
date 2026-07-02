@@ -22,7 +22,7 @@ export function Web3Provider({ children }: { children: ReactNode }) {
         },
         authorizationResultCache: createDefaultAuthorizationResultCache(),
         cluster: WalletAdapterNetwork.Devnet,
-        onWalletNotFound: (mobileWalletAdapter) => {
+        onWalletNotFound: async (mobileWalletAdapter) => {
           console.log('Mobile wallet not found', mobileWalletAdapter);
         }
       }),
