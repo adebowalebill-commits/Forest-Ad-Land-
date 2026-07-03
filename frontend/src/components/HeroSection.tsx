@@ -25,7 +25,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-5xl md:text-[5.5rem] font-bold tracking-tight text-white leading-[1.05]"
+            className="text-5xl md:text-[5.5rem] font-medium tracking-tight text-white leading-[1.05]"
           >
             {t('hero.title1')}<br/>
             {t('hero.title2')}<br/>
