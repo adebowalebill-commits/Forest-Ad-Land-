@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { supabase } from '../config/supabaseClient';
-import { PublicKey } from '@solana/web3.js';
 import nacl from 'tweetnacl';
 import bs58 from 'bs58';
 import jwt from 'jsonwebtoken';
@@ -18,11 +17,11 @@ router.post('/web3-login', async (req, res) => {
   }
 
   try {
-    const pubKey = new PublicKey(publicKey);
     const signatureUint8 = bs58.decode(signature);
     const messageUint8 = new TextEncoder().encode(message);
+    const pubKeyUint8 = bs58.decode(publicKey);
 
-    const isValid = nacl.sign.detached.verify(messageUint8, signatureUint8, pubKey.toBytes());
+    const isValid = nacl.sign.detached.verify(messageUint8, signatureUint8, pubKeyUint8);
 
     if (!isValid) {
       return res.status(401).json({ error: 'Invalid signature' });

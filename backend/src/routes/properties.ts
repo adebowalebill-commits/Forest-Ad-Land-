@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { supabase } from '../config/supabaseClient';
 import { verifyAuth } from './auth';
-import { Connection } from '@solana/web3.js';
 
 const router = Router();
 
@@ -179,9 +178,20 @@ router.post('/:id/acquire', verifyAuth, async (req: any, res: any) => {
     // Allow 5% slippage on backend due to price fluctuations between frontend fetch and tx inclusion
     const minExpectedFlAmount = expectedFlAmount * 0.95;
 
-    // 3. Verify Transaction on Mainnet
-    const connection = new Connection('https://api.mainnet-beta.solana.com', 'confirmed');
-    const tx = await connection.getTransaction(txSignature, { maxSupportedTransactionVersion: 0 });
+    // 3. Verify Transaction on Mainnet via direct RPC fetch to avoid web3.js ESM crash on Vercel
+    const rpcRes = await fetch('https://api.mainnet-beta.solana.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'getTransaction',
+        params: [txSignature, { encoding: 'jsonParsed', maxSupportedTransactionVersion: 0 }]
+      })
+    });
+    
+    const rpcData = await rpcRes.json();
+    const tx = rpcData.result;
 
     if (!tx || !tx.meta) {
       return res.status(400).json({ error: 'Transaction not found or unconfirmed' });
@@ -196,8 +206,8 @@ router.post('/:id/acquire', verifyAuth, async (req: any, res: any) => {
     const preBalances = tx.meta.preTokenBalances || [];
     const postBalances = tx.meta.postTokenBalances || [];
 
-    const treasuryPre = preBalances.find(b => b.owner === treasuryWallet && b.mint === tokenMint);
-    const treasuryPost = postBalances.find(b => b.owner === treasuryWallet && b.mint === tokenMint);
+    const treasuryPre = preBalances.find((b: any) => b.owner === treasuryWallet && b.mint === tokenMint);
+    const treasuryPost = postBalances.find((b: any) => b.owner === treasuryWallet && b.mint === tokenMint);
 
     const preAmount = treasuryPre ? Number(treasuryPre.uiTokenAmount.amount) : 0;
     const postAmount = treasuryPost ? Number(treasuryPost.uiTokenAmount.amount) : 0;
