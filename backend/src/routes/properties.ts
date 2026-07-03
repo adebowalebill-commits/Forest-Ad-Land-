@@ -111,10 +111,20 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/price', async (req, res) => {
   try {
     const { id } = req.params;
-    const { data: property, error } = await supabase.from('properties').select('x_coord, y_coord').eq('property_id', id).single();
-    if (error || !property) return res.status(404).json({ error: 'Property not found' });
+    let x, y;
     
-    const baseUsd = calculatePlotPrice(property.x_coord, property.y_coord);
+    if (id.startsWith('temp-')) {
+      const parts = id.split('-');
+      x = parseInt(parts[1], 10);
+      y = parseInt(parts[2], 10);
+    } else {
+      const { data: property, error } = await supabase.from('properties').select('x_coord, y_coord').eq('property_id', id).single();
+      if (error || !property) return res.status(404).json({ error: 'Property not found' });
+      x = property.x_coord;
+      y = property.y_coord;
+    }
+    
+    const baseUsd = calculatePlotPrice(x, y);
     const flPriceUsd = await getFlPriceUsd();
     const flAmount = Math.ceil(baseUsd / flPriceUsd);
     
@@ -134,18 +144,36 @@ router.post('/:id/acquire', verifyAuth, async (req: any, res: any) => {
   if (!txSignature) return res.status(400).json({ error: 'Missing transaction signature' });
 
   try {
-    // 1. Get Property
-    const { data: property, error: propError } = await supabase
-      .from('properties')
-      .select('x_coord, y_coord, status')
-      .eq('property_id', id)
-      .single();
+    let x, y;
+    let existingProp = false;
 
-    if (propError || !property) return res.status(404).json({ error: 'Property not found' });
-    if (property.status === 'Owned') return res.status(400).json({ error: 'Property already owned' });
+    if (id.startsWith('temp-')) {
+      const parts = id.split('-');
+      x = parseInt(parts[1], 10);
+      y = parseInt(parts[2], 10);
+      
+      // Double check if someone minted it since the user opened the panel
+      const { data: checkProp } = await supabase.from('properties').select('status').eq('x_coord', x).eq('y_coord', y).single();
+      if (checkProp && checkProp.status === 'Owned') {
+        return res.status(400).json({ error: 'Property already acquired by someone else' });
+      }
+    } else {
+      // 1. Get Property
+      const { data: property, error: propError } = await supabase
+        .from('properties')
+        .select('x_coord, y_coord, status')
+        .eq('property_id', id)
+        .single();
+
+      if (propError || !property) return res.status(404).json({ error: 'Property not found' });
+      if (property.status === 'Owned') return res.status(400).json({ error: 'Property already owned' });
+      x = property.x_coord;
+      y = property.y_coord;
+      existingProp = true;
+    }
 
     // 2. Calculate Expected Price
-    const baseUsd = calculatePlotPrice(property.x_coord, property.y_coord);
+    const baseUsd = calculatePlotPrice(x, y);
     const flPriceUsd = await getFlPriceUsd();
     const expectedFlAmount = Math.ceil(baseUsd / flPriceUsd);
     // Allow 5% slippage on backend due to price fluctuations between frontend fetch and tx inclusion
@@ -182,14 +210,25 @@ router.post('/:id/acquire', verifyAuth, async (req: any, res: any) => {
     }
 
     // 4. Mark Property as Owned
-    const { data: updatedProperty, error: updateError } = await supabase
-      .from('properties')
-      .update({ owner_id, status: 'Owned' })
-      .eq('property_id', id)
-      .select()
-      .single();
-
-    if (updateError) throw updateError;
+    let updatedProperty;
+    if (existingProp) {
+      const { data, error: updateError } = await supabase
+        .from('properties')
+        .update({ owner_id, status: 'Owned' })
+        .eq('property_id', id)
+        .select()
+        .single();
+      if (updateError) throw updateError;
+      updatedProperty = data;
+    } else {
+      const { data, error: insertError } = await supabase
+        .from('properties')
+        .insert([{ owner_id, type: 'standard', x_coord: x, y_coord: y, status: 'Owned' }])
+        .select()
+        .single();
+      if (insertError) throw insertError;
+      updatedProperty = data;
+    }
 
     res.status(200).json({ message: 'Property acquired successfully', property: updatedProperty });
 
