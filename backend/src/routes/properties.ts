@@ -135,10 +135,9 @@ router.get('/:id/price', async (req, res) => {
 
 // @route   POST /api/properties/:id/acquire
 // @desc    Acquire property with verified Solana transaction
-router.post('/:id/acquire', verifyAuth, async (req: any, res: any) => {
+router.post('/:id/acquire', async (req: any, res: any) => {
   const { id } = req.params;
   const { txSignature } = req.body;
-  const owner_id = req.user.id;
 
   if (!txSignature) return res.status(400).json({ error: 'Missing transaction signature' });
 
@@ -219,7 +218,24 @@ router.post('/:id/acquire', verifyAuth, async (req: any, res: any) => {
       return res.status(400).json({ error: `Insufficient funds transferred. Expected at least ${minExpectedFlAmount} $FL, got ${uiAmountTransferred}` });
     }
 
-    // 4. Mark Property as Owned
+    // 4. Extract buyer's wallet address from transaction signers
+    const accountKeys = tx.transaction.message.accountKeys || [];
+    const signerAccount = accountKeys.find((acc: any) => acc.signer === true);
+    if (!signerAccount) {
+      return res.status(400).json({ error: 'Could not identify transaction signer' });
+    }
+    const buyerWalletAddress = signerAccount.pubkey;
+
+    // Ensure user exists in database
+    let { data: user } = await supabase.from('users').select('id').eq('wallet_address', buyerWalletAddress).single();
+    if (!user) {
+      const { data: newUser, error: insertUserError } = await supabase.from('users').insert([{ wallet_address: buyerWalletAddress }]).select('id').single();
+      if (insertUserError) throw insertUserError;
+      user = newUser;
+    }
+    const owner_id = user.id;
+
+    // 5. Mark Property as Owned
     let updatedProperty;
     if (existingProp) {
       const { data, error: updateError } = await supabase

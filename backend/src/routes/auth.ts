@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { supabase } from '../config/supabaseClient';
 import nacl from 'tweetnacl';
-import bs58 from 'bs58';
 import jwt from 'jsonwebtoken';
 
 const router = Router();
@@ -17,14 +16,10 @@ router.post('/web3-login', async (req, res) => {
   }
 
   try {
-    // signature and message are sent as base64 from the frontend
+    // signature, message, and publicKey are sent as base64 from the frontend
     const signatureUint8 = Buffer.from(signature, 'base64');
     const messageUint8 = Buffer.from(message, 'base64');
-    
-    // publicKey is sent as base58 string from the frontend
-    // Use bs58 default export depending on commonjs vs esm
-    const bs58Decode = (typeof bs58.decode === 'function') ? bs58.decode : (bs58 as any).default.decode || (bs58 as any).decode;
-    const pubKeyUint8 = bs58Decode(publicKey);
+    const pubKeyUint8 = Buffer.from(publicKey, 'base64');
 
     const isValid = nacl.sign.detached.verify(messageUint8, signatureUint8, pubKeyUint8);
 

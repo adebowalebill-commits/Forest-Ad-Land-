@@ -27,12 +27,11 @@ export const api = {
   },
 
   // Acquire plot by providing verified txSignature
-  async acquirePlot(id: string, token: string, txSignature: string) {
+  async acquirePlot(id: string, txSignature: string) {
     const res = await fetch(`${API_URL}/properties/${id}/acquire`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({ txSignature })
     });
@@ -52,7 +51,10 @@ export const api = {
       },
       body: JSON.stringify({ publicKey, signature, message })
     });
-    if (!res.ok) throw new Error('Authentication failed');
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(`Auth Error: ${err.error || 'Unknown'} - ${err.details || res.statusText}`);
+    }
     return res.json();
   },
 

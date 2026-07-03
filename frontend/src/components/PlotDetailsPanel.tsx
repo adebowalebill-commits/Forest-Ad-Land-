@@ -45,21 +45,6 @@ export default function PlotDetailsPanel({ plot, onClose, onPlotUpdated }: PlotD
     try {
       setIsMinting(true);
       setError(null);
-      
-      let token = localStorage.getItem('auth_token');
-      if (!token) {
-        const message = new TextEncoder().encode(`Sign this message to authenticate with Forest Ad Land: ${Date.now()}`);
-        const signature = await signMessage(message);
-        
-        const data = await api.login(
-          publicKey.toString(),
-          Buffer.from(signature).toString('base64'),
-          Buffer.from(message).toString('base64')
-        );
-
-        token = data.token;
-        if(token) localStorage.setItem('auth_token', token);
-      }
 
       if (!plotPrice) throw new Error("Price not loaded yet");
 
@@ -118,7 +103,7 @@ export default function PlotDetailsPanel({ plot, onClose, onPlotUpdated }: PlotD
       });
 
       // Send to backend for verification and ownership transfer
-      await api.acquirePlot(plot!.id, token!, txSignature);
+      await api.acquirePlot(plot!.id, txSignature);
 
       if (onPlotUpdated) {
         onPlotUpdated();
