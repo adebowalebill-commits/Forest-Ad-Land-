@@ -51,18 +51,12 @@ export default function PlotDetailsPanel({ plot, onClose, onPlotUpdated }: PlotD
         const message = new TextEncoder().encode(`Sign this message to authenticate with Forest Ad Land: ${Date.now()}`);
         const signature = await signMessage(message);
         
-        const authRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/auth/verify`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            publicKey: publicKey.toString(),
-            signature: Buffer.from(signature).toString('base64'),
-            message: Buffer.from(message).toString('base64')
-          })
-        });
+        const data = await api.login(
+          publicKey.toString(),
+          Buffer.from(signature).toString('base64'),
+          Buffer.from(message).toString('base64')
+        );
 
-        if (!authRes.ok) throw new Error("Authentication failed");
-        const data = await authRes.json();
         token = data.token;
         if(token) localStorage.setItem('auth_token', token);
       }
