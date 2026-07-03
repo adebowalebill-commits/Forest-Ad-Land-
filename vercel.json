@@ -10,5 +10,21 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "env": {
+    "SUPABASE_URL": "https://ubjlayldfkdiznhahtjd.supabase.co",
+    "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InViamxheWxkZmtkaXpuaGFodGpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4OTU2NDEsImV4cCI6MjA5ODQ3MTY0MX0.HObBCISDqqSFVXt-pDdPuXnLqmMAp8NcDGuMcasATHE",
+    "JWT_SECRET": "super_secret_jwt_key_here",
+    "TREASURY_WALLET": "BLmwAUquSiXAqCxd5gSrEWiDMdabMo5RWWgcZ6aMnSrZ",
+    "TOKEN_MINT": "2iqdyuBEtNeR15PtmuWAZBorK1hEmWhYnpY71j42pump"
+  },
+  "build": {
+    "env": {
+      "VITE_SUPABASE_URL": "https://ubjlayldfkdiznhahtjd.supabase.co",
+      "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InViamxheWxkZmtkaXpuaGFodGpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4OTU2NDEsImV4cCI6MjA5ODQ3MTY0MX0.HObBCISDqqSFVXt-pDdPuXnLqmMAp8NcDGuMcasATHE",
+      "VITE_API_URL": "/api",
+      "VITE_TREASURY_WALLET": "BLmwAUquSiXAqCxd5gSrEWiDMdabMo5RWWgcZ6aMnSrZ",
+      "VITE_TOKEN_MINT": "2iqdyuBEtNeR15PtmuWAZBorK1hEmWhYnpY71j42pump"
+    }
+  }
 }
