@@ -4,11 +4,9 @@ import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { createDefaultAddressSelector, createDefaultAuthorizationResultCache, SolanaMobileWalletAdapter } from '@solana-mobile/wallet-adapter-mobile';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
 import '@solana/wallet-adapter-react-ui/styles.css';
 
 export function Web3Provider({ children }: { children: ReactNode }) {
-  const network = WalletAdapterNetwork.Mainnet;
   const endpoint = useMemo(() => 'https://solana-rpc.publicnode.com', []);
 
   const wallets = useMemo(
