@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Buffer } from 'buffer';
-import { useWallet } from '@solana/wallet-adapter-react';
+import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { MapPin, User, Tag, Image as ImageIcon, Link as LinkIcon, ExternalLink, X, Navigation } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { PublicKey, Transaction } from '@solana/web3.js';
+import { createTransferInstruction, getAssociatedTokenAddress } from '@solana/spl-token';
 import type { PlotData } from '../pages/Explore';
+import { api } from '../lib/api';
 
 interface PlotDetailsPanelProps {
   plot: PlotData | null;
@@ -14,11 +17,24 @@ interface PlotDetailsPanelProps {
 }
 
 export default function PlotDetailsPanel({ plot, onClose, onPlotUpdated }: PlotDetailsPanelProps) {
-  const { connected, publicKey, signMessage } = useWallet();
+  const { connected, publicKey, signMessage, sendTransaction } = useWallet();
+  const { connection } = useConnection();
   const { setVisible } = useWalletModal();
   const [isMinting, setIsMinting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [plotPrice, setPlotPrice] = useState<{ baseUsd: number, flPriceUsd: number, flAmount: number } | null>(null);
+  const [isLoadingPrice, setIsLoadingPrice] = useState(false);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (plot && plot.status === 'available') {
+      setIsLoadingPrice(true);
+      api.getPlotPrice(plot.id)
+        .then(data => setPlotPrice(data))
+        .catch(err => console.error('Failed to fetch dynamic price', err))
+        .finally(() => setIsLoadingPrice(false));
+    }
+  }, [plot]);
 
   const handleAcquire = async () => {
     if (!connected || !publicKey || !signMessage) {
@@ -51,22 +67,48 @@ export default function PlotDetailsPanel({ plot, onClose, onPlotUpdated }: PlotD
         if(token) localStorage.setItem('auth_token', token);
       }
 
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      if (!plotPrice) throw new Error("Price not loaded yet");
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/plots/${plot?.id}/acquire`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          txSignature: 'simulated_tx_sig_' + Date.now()
-        })
+      // Build SPL Token Transfer Transaction
+      const treasuryWalletStr = import.meta.env.VITE_TREASURY_WALLET;
+      const tokenMintStr = import.meta.env.VITE_TOKEN_MINT || '2iqdyuBEtNeR15PtmuWAZBorK1hEmWhYnpY71j42pump';
+      if (!treasuryWalletStr) throw new Error("Treasury wallet not configured");
+
+      const treasuryPubKey = new PublicKey(treasuryWalletStr);
+      const mintPubKey = new PublicKey(tokenMintStr);
+
+      // Get Associated Token Accounts (ATA)
+      const userATA = await getAssociatedTokenAddress(mintPubKey, publicKey);
+      const treasuryATA = await getAssociatedTokenAddress(mintPubKey, treasuryPubKey);
+
+      // Amount in raw units (6 decimals)
+      const amount = plotPrice.flAmount * 1_000_000;
+
+      const transaction = new Transaction().add(
+        createTransferInstruction(
+          userATA,
+          treasuryATA,
+          publicKey,
+          amount
+        )
+      );
+
+      const latestBlockhash = await connection.getLatestBlockhash('confirmed');
+      transaction.recentBlockhash = latestBlockhash.blockhash;
+      transaction.feePayer = publicKey;
+
+      // Send the transaction through the wallet
+      const txSignature = await sendTransaction(transaction, connection);
+
+      // Wait for confirmation
+      await connection.confirmTransaction({
+        signature: txSignature,
+        blockhash: latestBlockhash.blockhash,
+        lastValidBlockHeight: latestBlockhash.lastValidBlockHeight
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to acquire plot. It might be taken.");
-      }
+      // Send to backend for verification and ownership transfer
+      await api.acquirePlot(plot!.id, token!, txSignature);
 
       if (onPlotUpdated) {
         onPlotUpdated();
@@ -117,11 +159,20 @@ export default function PlotDetailsPanel({ plot, onClose, onPlotUpdated }: PlotD
               <div className="flex flex-col gap-4">
                 <div className="flex justify-between items-center px-2">
                   <span className="text-gray-400">{t('plotDetails.price')}</span>
-                  <span className="text-2xl font-bold text-primary">{plot.price || 10} $FL</span>
+                  <div className="text-right">
+                    <span className="text-2xl font-bold text-primary block">
+                      {isLoadingPrice ? '...' : (plotPrice ? `${plotPrice.flAmount} $FL` : '10 $FL')}
+                    </span>
+                    {plotPrice && (
+                      <span className="text-xs text-gray-500 font-medium">
+                        ~${plotPrice.baseUsd} USD
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <button 
                   onClick={handleAcquire}
-                  disabled={isMinting}
+                  disabled={isMinting || isLoadingPrice}
                   className="w-full bg-primary hover:brightness-110 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg hover:shadow-primary/20 flex justify-center items-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isMinting ? t('plotDetails.minting') : t('plotDetails.acquirePlot')}

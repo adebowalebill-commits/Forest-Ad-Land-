@@ -19,6 +19,30 @@ export const api = {
     return res.json();
   },
 
+  // Fetch dynamic plot pricing based on live oracle
+  async getPlotPrice(id: string) {
+    const res = await fetch(`${API_URL}/properties/${id}/price`);
+    if (!res.ok) throw new Error('Failed to fetch plot price');
+    return res.json();
+  },
+
+  // Acquire plot by providing verified txSignature
+  async acquirePlot(id: string, token: string, txSignature: string) {
+    const res = await fetch(`${API_URL}/properties/${id}/acquire`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ txSignature })
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Failed to acquire plot');
+    }
+    return res.json();
+  },
+
   // Authenticate Web3 Wallet
   async login(publicKey: string, signature: string, message: string) {
     const res = await fetch(`${API_URL}/auth/web3-login`, {

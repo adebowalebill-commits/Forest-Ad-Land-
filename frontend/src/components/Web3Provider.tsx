@@ -8,7 +8,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 import '@solana/wallet-adapter-react-ui/styles.css';
 
 export function Web3Provider({ children }: { children: ReactNode }) {
-  const network = WalletAdapterNetwork.Devnet;
+  const network = WalletAdapterNetwork.Mainnet;
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
   const wallets = useMemo(
@@ -21,7 +21,7 @@ export function Web3Provider({ children }: { children: ReactNode }) {
           icon: '/assets/logo.png',
         },
         authorizationResultCache: createDefaultAuthorizationResultCache(),
-        cluster: WalletAdapterNetwork.Devnet,
+        cluster: WalletAdapterNetwork.Mainnet,
         onWalletNotFound: async (mobileWalletAdapter) => {
           console.log('Mobile wallet not found', mobileWalletAdapter);
         }
