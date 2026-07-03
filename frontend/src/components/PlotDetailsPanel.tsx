@@ -75,8 +75,8 @@ export default function PlotDetailsPanel({ plot, onClose, onPlotUpdated }: PlotD
       const userATA = await getAssociatedTokenAddress(mintPubKey, publicKey);
       const treasuryATA = await getAssociatedTokenAddress(mintPubKey, treasuryPubKey);
 
-      // Amount in raw units (6 decimals)
-      const amount = plotPrice.flAmount * 1_000_000;
+      // Amount in raw units (6 decimals). Must be an integer.
+      const amount = Math.floor(plotPrice.flAmount * 1_000_000);
 
       const transaction = new Transaction().add(
         createTransferInstruction(
