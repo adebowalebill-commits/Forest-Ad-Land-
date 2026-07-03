@@ -61,6 +61,20 @@ export default function PlotDetailsPanel({ plot, onClose, onPlotUpdated }: PlotD
 
       const transaction = new Transaction();
 
+      // Check if treasury ATA exists
+      const treasuryAccountInfo = await connection.getAccountInfo(treasuryATA);
+      if (!treasuryAccountInfo) {
+        const { createAssociatedTokenAccountInstruction } = await import('@solana/spl-token');
+        transaction.add(
+          createAssociatedTokenAccountInstruction(
+            publicKey, // payer
+            treasuryATA, // ata
+            treasuryPubKey, // owner
+            mintPubKey // mint
+          )
+        );
+      }
+
       // Amount in raw units (6 decimals)
       const amount = plotPrice.flAmount * 1_000_000;
 

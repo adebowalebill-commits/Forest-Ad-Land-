@@ -9,7 +9,7 @@ import '@solana/wallet-adapter-react-ui/styles.css';
 
 export function Web3Provider({ children }: { children: ReactNode }) {
   const network = WalletAdapterNetwork.Mainnet;
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  const endpoint = useMemo(() => 'https://solana-rpc.publicnode.com', []);
 
   const wallets = useMemo(
     () => [
