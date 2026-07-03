@@ -19,5 +19,11 @@
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.2.0",
     "tweetnacl": "^1.0.3"
+  },
+  "overrides": {
+    "rpc-websockets": {
+      "uuid": "^8.3.2"
+    },
+    "uuid": "^8.3.2"
   }
 }
