@@ -17,8 +17,8 @@ router.post('/web3-login', async (req, res) => {
   }
 
   try {
-    const signatureUint8 = bs58.decode(signature);
-    const messageUint8 = new TextEncoder().encode(message);
+    const signatureUint8 = Buffer.from(signature, 'base64');
+    const messageUint8 = Buffer.from(message, 'base64');
     const pubKeyUint8 = bs58.decode(publicKey);
 
     const isValid = nacl.sign.detached.verify(messageUint8, signatureUint8, pubKeyUint8);
