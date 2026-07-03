@@ -40,7 +40,7 @@ function Slide({ src, index }: { src: string, index: number }) {
     <motion.div 
       ref={ref}
       style={{ scale, opacity }}
-      className="w-full rounded-2xl md:rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 bg-black"
+      className="w-full max-w-sm md:max-w-md lg:max-w-[600px] mx-auto rounded-2xl md:rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 bg-black"
     >
       <img src={src} alt={`About Slide ${index + 1}`} className="w-full h-auto object-cover" />
     </motion.div>
