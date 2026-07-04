@@ -431,7 +431,8 @@ h1, h2, h3, h4, h5, h6 {
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: var(--space-xl) var(--space-md);
+  padding: 0 var(--space-md);
+  width: 100%;
 }
 
 .hero-logo {
@@ -440,7 +441,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   border: 3px solid var(--color-gold);
   box-shadow: var(--shadow-gold-intense), 0 0 60px rgba(212, 168, 70, 0.15);
-  margin: 0 auto var(--space-lg);
+  margin: 0 auto var(--space-md);
   animation: float 6s ease-in-out infinite;
 }
 
@@ -453,7 +454,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: clamp(2.5rem, 7vw, 5rem);
   font-weight: 900;
   letter-spacing: 2px;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
   background: linear-gradient(135deg, var(--color-white) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -466,7 +467,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   font-style: italic;
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
   letter-spacing: 0.5px;
 }
 
@@ -476,7 +477,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .badge {
@@ -501,7 +502,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--color-glass-border);
   border-radius: var(--radius-full);
   padding: 0.5rem 0.75rem 0.5rem 1.25rem;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   cursor: pointer;
@@ -577,12 +578,11 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--space-sm);
 }
 
-/* Pillars */
 .hero-pillars {
   display: flex;
   justify-content: center;
   gap: var(--space-xl);
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-lg);
 }
 
 .hero-pillar {
