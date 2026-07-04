@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Forest Ad Land — Where Digital Land Meets the Future of Advertising</title>
+  <meta name="description" content="Forest Ad Land is a Web3 ecosystem connecting digital land ownership, advertising, businesses, and community through one unified platform. Own. Build. Grow." />
+  <meta name="author" content="Forest Ad Land" />
+  <meta name="keywords" content="Forest Ad Land, digital land, Web3, advertising, token, virtual land, marketplace, blockchain, Solana, community" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Forest Ad Land — Where Digital Land Meets the Future of Advertising" />
+  <meta property="og:description" content="A Web3 ecosystem connecting digital land ownership, advertising, businesses, and community. Own. Build. Grow." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/about-1-hero.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Forest Ad Land — Own. Build. Grow." />
+  <meta name="twitter:description" content="A Web3 ecosystem connecting digital land, advertising, and community." />
+  <meta name="twitter:image" content="assets/about-1-hero.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="nav" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="assets/logo.png" alt="Forest Ad Land logo" width="44" height="44" />
+        <span class="nav-logo-text">Forest Ad Land</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" data-i18n="nav_about">About</a></li>
+        <li><a href="#token" data-i18n="nav_token">Token</a></li>
+        <li><a href="#roadmap" data-i18n="nav_roadmap">Roadmap</a></li>
+        <li><a href="#community" data-i18n="nav_community">Community</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="lang-toggle" id="langToggle">
+          <button class="active" data-lang="en">EN</button>
+          <button data-lang="ru">RU</button>
+        </div>
+        <a href="https://t.me/ForestAdLand" target="_blank" rel="noopener" class="btn-cta" data-i18n="nav_join">
+          Join Community
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+    </div>
+
+    <div class="hero-content">
+      <img src="assets/logo.png" alt="Forest Ad Land logo" class="hero-logo" width="140" height="140" />
+
+      <h1 class="hero-title" data-i18n="hero_title">FOREST AD LAND</h1>
+      <p class="hero-tagline" data-i18n="hero_tagline">Where Digital Land Meets the Future of Advertising.</p>
+
+      <div class="hero-badges">
+        <span class="badge" data-i18n="badge_own">🌿 OWN</span>
+        <span class="badge" data-i18n="badge_build">🏗️ BUILD</span>
+        <span class="badge" data-i18n="badge_grow">🚀 GROW</span>
+      </div>
+
+      <!-- Contract Address -->
+      <div class="hero-ca" id="heroCa" role="button" tabindex="0" aria-label="Copy contract address">
+        <span class="hero-ca-text">2iqdyuBEtNeR15Ptmu...pump</span>
+        <button class="hero-ca-btn" aria-label="Copy CA">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+        <span class="copy-tooltip" id="copyTooltip" data-i18n="copy_tooltip">Copied!</span>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="https://t.me/ForestAdLand" target="_blank" rel="noopener" class="btn-cta">
+          <span>✈</span> <span data-i18n="cta_telegram">Join Telegram</span>
+        </a>
+        <a href="https://x.com/forestlandlc?s=21" target="_blank" rel="noopener" class="btn-outline">
+          <span>𝕏</span> <span data-i18n="cta_twitter">Follow on X</span>
+        </a>
+      </div>
+
+      <div class="hero-pillars">
+        <div class="hero-pillar">
+          <div class="hero-pillar-title" data-i18n="pillar_own">OWN</div>
+          <div class="hero-pillar-line"></div>
+        </div>
+        <div class="hero-pillar">
+          <div class="hero-pillar-title" data-i18n="pillar_build">BUILD</div>
+          <div class="hero-pillar-line"></div>
+        </div>
+        <div class="hero-pillar">
+          <div class="hero-pillar-title" data-i18n="pillar_grow">GROW</div>
+          <div class="hero-pillar-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span data-i18n="scroll_text">Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+
+  <main>
+
+    <!-- ==================== ABOUT — WHAT IS FAL? ==================== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-divider reveal">
+          <div class="line"></div>
+          <div class="dot"></div>
+          <div class="line"></div>
+        </div>
+
+        <div class="split-section">
+          <div class="split-image reveal">
+            <img src="assets/about-2-what-is.jpg" alt="What is Forest Ad Land?" width="800" height="450" />
+          </div>
+          <div class="split-text reveal reveal-delay-2">
+            <span class="section-label"><span class="label-icon">💡</span> <span data-i18n="about_label">The Heart of Forest Ad Land</span></span>
+            <h2 data-i18n="about_title">What is Forest Ad Land?</h2>
+            <p data-i18n="about_text">Forest Ad Land is a next-generation digital world where virtual land, advertising, and community come together. It's designed to create value through ownership, visibility, and long-term growth. It gives users, creators, and businesses a shared space to own digital land, showcase brands, and become part of a growing community built for the future.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== OWN DIGITAL LAND ==================== -->
+    <section class="section">
+      <div class="container">
+        <div class="split-section reverse">
+          <div class="split-image reveal">
+            <img src="assets/about-3-own-land.jpg" alt="Own Digital Land in Forest Ad Land" width="800" height="450" />
+          </div>
+          <div class="split-text reveal reveal-delay-2">
+            <span class="section-label"><span class="label-icon">🗺️</span> <span data-i18n="own_label">Digital Ownership</span></span>
+            <h2 data-i18n="own_title">Own Digital Land</h2>
+            <p data-i18n="own_text">Digital land is more than ownership, it's an opportunity. Secure your place in a growing ecosystem, unlock future possibilities, and become part of a community where every plot has purpose and potential.</p>
+            <div class="feature-pills">
+              <div class="feature-pill">
+                <span class="pill-icon">🌿</span>
+                <span class="pill-text"><strong data-i18n="own_pill1_title">Own</strong> — <span data-i18n="own_pill1_text">Secure your digital space.</span></span>
+              </div>
+              <div class="feature-pill">
+                <span class="pill-icon">📣</span>
+                <span class="pill-text"><strong data-i18n="own_pill2_title">Advertise</strong> — <span data-i18n="own_pill2_text">Increase visibility through virtual advertising.</span></span>
+              </div>
+              <div class="feature-pill">
+                <span class="pill-icon">🌱</span>
+                <span class="pill-text"><strong data-i18n="own_pill3_title">Grow</strong> — <span data-i18n="own_pill3_text">Be part of an expanding digital ecosystem.</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== ADVERTISING WITH PURPOSE ==================== -->
+    <section class="section">
+      <div class="container">
+        <div class="split-section">
+          <div class="split-image reveal">
+            <img src="assets/about-4-advertising.jpg" alt="Advertising with Purpose in Forest Ad Land" width="800" height="450" />
+          </div>
+          <div class="split-text reveal reveal-delay-2">
+            <span class="section-label"><span class="label-icon">📡</span> <span data-i18n="ads_label">Advertising Ecosystem</span></span>
+            <h2 data-i18n="ads_title">Advertising with Purpose</h2>
+            <p data-i18n="ads_text">Forest Ad Land transforms digital spaces into valuable advertising opportunities. Businesses can place their brands in strategic locations, creators can increase visibility, and communities benefit from an ecosystem designed for real engagement — not just impressions.</p>
+          </div>
+        </div>
+
+        <div class="feature-cards">
+          <div class="feature-card glass-card reveal reveal-delay-1">
+            <div class="card-icon">📢</div>
+            <h3 data-i18n="ads_card1_title">Advertise</h3>
+            <p data-i18n="ads_card1_text">Promote your brand in premium digital spaces designed for visibility and impact.</p>
+          </div>
+          <div class="feature-card glass-card reveal reveal-delay-2">
+            <div class="card-icon">👥</div>
+            <h3 data-i18n="ads_card2_title">Reach</h3>
+            <p data-i18n="ads_card2_text">Connect with a growing community in high-traffic locations.</p>
+          </div>
+          <div class="feature-card glass-card reveal reveal-delay-3">
+            <div class="card-icon">📈</div>
+            <h3 data-i18n="ads_card3_title">Expand</h3>
+            <p data-i18n="ads_card3_text">Grow your brand alongside an evolving ecosystem with endless potential.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== COMMUNITY & MARKETPLACE ==================== -->
+    <section class="section">
+      <div class="container">
+        <div class="split-section reverse">
+          <div class="split-image reveal">
+            <img src="assets/about-5-community.jpg" alt="Community and Marketplace" width="800" height="450" />
+          </div>
+          <div class="split-text reveal reveal-delay-2">
+            <span class="section-label"><span class="label-icon">🤝</span> <span data-i18n="market_label">More Than Ownership</span></span>
+            <h2 data-i18n="market_title">Community & Marketplace</h2>
+            <p data-i18n="market_subtitle" style="font-style: italic; color: var(--color-gold); margin-bottom: var(--space-sm); font-size: 0.95rem;">More Than Ownership. Built for Connection.</p>
+            <p data-i18n="market_text">Forest Ad Land is designed to bring people together through a growing digital ecosystem. Users can connect, trade digital assets, discover new opportunities, and help shape a community where creativity, collaboration, and long-term participation drive real value.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== THE VISION ==================== -->
+    <section class="vision-section" id="vision">
+      <div class="vision-bg">
+      </div>
+      <div class="vision-content reveal">
+        <img src="assets/logo.png" alt="Forest Ad Land" class="vision-logo" width="80" height="80" />
+        <h2 data-i18n="vision_title">The Vision</h2>
+        <p data-i18n="vision_subtitle">From one digital forest to a global ecosystem.</p>
+        <span class="vision-cta" data-i18n="vision_cta">Join us as we build the future.</span>
+      </div>
+    </section>
+
+
+    <!-- ==================== TOKEN UTILITY ==================== -->
+    <section class="section" id="token">
+      <div class="container">
+        <div class="section-divider reveal">
+          <div class="line"></div>
+          <div class="dot"></div>
+          <div class="line"></div>
+        </div>
+
+        <div style="text-align: center;" class="reveal">
+          <span class="section-label"><span class="label-icon">🪙</span> <span data-i18n="token_label">Token Utility</span></span>
+          <h2 class="section-title" data-i18n="token_title">$FAL Token</h2>
+          <p class="section-subtitle" data-i18n="token_subtitle">The utility layer inside the Forest Ad Land ecosystem. Used for land actions, advertising, upgrades, rewards, marketplace activity, and community incentives.</p>
+        </div>
+
+        <div class="token-grid">
+          <div class="token-card glass-card reveal reveal-delay-1">
+            <div class="card-icon">🏠</div>
+            <h3 data-i18n="token_card1_title">Land Actions</h3>
+            <p data-i18n="token_card1_text">Acquire, upgrade, and manage your digital property.</p>
+          </div>
+          <div class="token-card glass-card reveal reveal-delay-2">
+            <div class="card-icon">📣</div>
+            <h3 data-i18n="token_card2_title">Advertising</h3>
+            <p data-i18n="token_card2_text">Pay for ad placements and premium visibility.</p>
+          </div>
+          <div class="token-card glass-card reveal reveal-delay-3">
+            <div class="card-icon">⬆️</div>
+            <h3 data-i18n="token_card3_title">Upgrades</h3>
+            <p data-i18n="token_card3_text">Enhance your land, unlock features, and boost value.</p>
+          </div>
+          <div class="token-card glass-card reveal reveal-delay-1">
+            <div class="card-icon">🎁</div>
+            <h3 data-i18n="token_card4_title">Rewards</h3>
+            <p data-i18n="token_card4_text">Earn tokens for active participation and contributions.</p>
+          </div>
+          <div class="token-card glass-card reveal reveal-delay-2">
+            <div class="card-icon">🛒</div>
+            <h3 data-i18n="token_card5_title">Marketplace</h3>
+            <p data-i18n="token_card5_text">Trade land, ad spaces, and digital assets.</p>
+          </div>
+          <div class="token-card glass-card reveal reveal-delay-3">
+            <div class="card-icon">🌍</div>
+            <h3 data-i18n="token_card6_title">Community</h3>
+            <p data-i18n="token_card6_text">Incentives for community growth and governance.</p>
+          </div>
+        </div>
+
+        <!-- CA Display -->
+        <div class="ca-display reveal" id="caDisplay">
+          <span class="ca-label" data-i18n="ca_label">Contract Address</span>
+          <span class="ca-address" id="caAddress">2iqdyuBEtNeR15PtmuWAZBorK1hEmWhYnpY71j42pump</span>
+          <button class="ca-copy-btn" id="caCopyBtn" aria-label="Copy contract address">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span data-i18n="ca_copy_btn">Copy</span>
+          </button>
+          <span class="copy-tooltip" id="copyTooltip2" data-i18n="copy_tooltip">Copied!</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== ROADMAP ==================== -->
+    <section class="section" id="roadmap">
+      <div class="container">
+        <div class="section-divider reveal">
+          <div class="line"></div>
+          <div class="dot"></div>
+          <div class="line"></div>
+        </div>
+
+        <div style="text-align: center;" class="reveal">
+          <span class="section-label"><span class="label-icon">🗺️</span> <span data-i18n="roadmap_label">The Journey</span></span>
+          <h2 class="section-title" data-i18n="roadmap_title">Roadmap</h2>
+          <p class="section-subtitle" data-i18n="roadmap_subtitle">Our strategic plan for growth, innovation, and community success. Built openly, step by step.</p>
+        </div>
+
+        <div class="roadmap-timeline">
+
+          <!-- Phase 1 -->
+          <div class="roadmap-item active reveal">
+            <div class="roadmap-node"></div>
+            <div class="roadmap-card glass-card">
+              <span class="phase-label">
+                🚀 <span data-i18n="roadmap_p1_label">Phase 1</span>
+                <span class="phase-status current" data-i18n="roadmap_status_current">Current</span>
+              </span>
+              <h3 data-i18n="roadmap_p1_title">Foundation</h3>
+              <ul>
+                <li><span class="check">✓</span> <span data-i18n="roadmap_p1_1">Token launch on Solana</span></li>
+                <li><span class="check">✓</span> <span data-i18n="roadmap_p1_2">Community channels live (Telegram & X)</span></li>
+                <li><span class="check">✓</span> <span data-i18n="roadmap_p1_3">Official website launch</span></li>
+                <li><span class="check">✓</span> <span data-i18n="roadmap_p1_4">Social media presence established</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p1_5">Community growth campaigns</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p1_6">Early supporter rewards</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="roadmap-item reveal">
+            <div class="roadmap-node"></div>
+            <div class="roadmap-card glass-card">
+              <span class="phase-label">
+                🌱 <span data-i18n="roadmap_p2_label">Phase 2</span>
+                <span class="phase-status upcoming" data-i18n="roadmap_status_upcoming">Upcoming</span>
+              </span>
+              <h3 data-i18n="roadmap_p2_title">Growth & Ecosystem</h3>
+              <ul>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p2_1">Community expansion & partnerships</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p2_2">Early land concept development</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p2_3">Token utility rollout begins</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p2_4">Strategic marketing initiatives</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p2_5">Liquidity & market stability focus</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="roadmap-item reveal">
+            <div class="roadmap-node"></div>
+            <div class="roadmap-card glass-card">
+              <span class="phase-label">
+                🏗️ <span data-i18n="roadmap_p3_label">Phase 3</span>
+                <span class="phase-status upcoming" data-i18n="roadmap_status_upcoming">Upcoming</span>
+              </span>
+              <h3 data-i18n="roadmap_p3_title">Product Launch</h3>
+              <ul>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p3_1">Digital land platform beta</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p3_2">Advertising marketplace launch</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p3_3">Property types system (land, ad spaces, zones)</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p3_4">Business onboarding program</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p3_5">Community governance features</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Phase 4 -->
+          <div class="roadmap-item reveal">
+            <div class="roadmap-node"></div>
+            <div class="roadmap-card glass-card">
+              <span class="phase-label">
+                🌍 <span data-i18n="roadmap_p4_label">Phase 4</span>
+                <span class="phase-status upcoming" data-i18n="roadmap_status_vision">Vision</span>
+              </span>
+              <h3 data-i18n="roadmap_p4_title">Global Expansion</h3>
+              <ul>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p4_1">Multi-city digital land expansion</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p4_2">Global advertising ecosystem</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p4_3">Enterprise business integrations</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p4_4">Exchange listings (milestone-based)</span></li>
+                <li><span class="pending">○</span> <span data-i18n="roadmap_p4_5">Cross-chain expansion</span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== EARLY SUPPORTERS ==================== -->
+    <section class="section" id="supporters">
+      <div class="container">
+        <div class="supporters-banner reveal">
+          <span class="section-label"><span class="label-icon">⭐</span> <span data-i18n="supporters_label">Be Early</span></span>
+          <h2 data-i18n="supporters_title">Early Supporters Matter</h2>
+          <p data-i18n="supporters_text">We believe the people who join first help build the foundation. Early supporters get advantages that reward their trust and participation from day one.</p>
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <span class="benefit-icon">✦</span>
+              <span data-i18n="benefit_1">Early access to new features</span>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon">✦</span>
+              <span data-i18n="benefit_2">Special community roles</span>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon">✦</span>
+              <span data-i18n="benefit_3">Priority in future drops</span>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon">✦</span>
+              <span data-i18n="benefit_4">Limited community rewards</span>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon">✦</span>
+              <span data-i18n="benefit_5">Better starting opportunities</span>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon">✦</span>
+              <span data-i18n="benefit_6">Founding member recognition</span>
+            </div>
+          </div>
+          <a href="https://t.me/ForestAdLand" target="_blank" rel="noopener" class="btn-cta" data-i18n="supporters_cta">
+            Join the Community Now
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== COMMUNITY / SOCIALS ==================== -->
+    <section class="section" id="community">
+      <div class="container">
+        <div class="section-divider reveal">
+          <div class="line"></div>
+          <div class="dot"></div>
+          <div class="line"></div>
+        </div>
+
+        <div style="text-align: center;" class="reveal">
+          <span class="section-label"><span class="label-icon">💬</span> <span data-i18n="social_label">Connect</span></span>
+          <h2 class="section-title" data-i18n="social_title">Join the Community</h2>
+          <p class="section-subtitle" data-i18n="social_subtitle">Connect with us on social media and be part of our growing community.</p>
+        </div>
+
+        <div class="social-cards">
+          <a href="https://x.com/forestlandlc?s=21" target="_blank" rel="noopener" class="social-card glass-card reveal reveal-delay-1">
+            <div class="social-icon">𝕏</div>
+            <h3>X (Twitter)</h3>
+            <p data-i18n="social_x_desc">Latest updates and announcements</p>
+            <span class="btn-join" data-i18n="social_join">Join Now →</span>
+          </a>
+
+          <a href="https://t.me/ForestAdLand" target="_blank" rel="noopener" class="social-card glass-card reveal reveal-delay-2">
+            <div class="social-icon">✈</div>
+            <h3>Telegram</h3>
+            <p data-i18n="social_tg_desc">Community chat and support</p>
+            <span class="btn-join" data-i18n="social_join">Join Now →</span>
+          </a>
+
+          <a href="mailto:forestadland@gmail.com" class="social-card glass-card reveal reveal-delay-3">
+            <div class="social-icon">✉</div>
+            <h3 data-i18n="social_email_title">Email</h3>
+            <p data-i18n="social_email_desc">Business inquiries and partnerships</p>
+            <span class="btn-join" data-i18n="social_contact">Contact Us →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <img src="assets/logo.png" alt="Forest Ad Land" class="footer-logo" width="56" height="56" />
+      <div class="footer-name">Forest Ad Land</div>
+      <div class="footer-tagline" data-i18n="footer_tagline">Own. Build. Grow.</div>
+
+      <div class="footer-socials">
+        <a href="https://x.com/forestlandlc?s=21" target="_blank" rel="noopener" aria-label="X (Twitter)">𝕏</a>
+        <a href="https://t.me/ForestAdLand" target="_blank" rel="noopener" aria-label="Telegram">✈</a>
+        <a href="mailto:forestadland@gmail.com" aria-label="Email">✉</a>
+      </div>
+
+      <div class="footer-ca" data-i18n="footer_ca_prefix">CA: 2iqdyuBEtNeR15PtmuWAZBorK1hEmWhYnpY71j42pump</div>
+
+      <div class="footer-copyright" data-i18n="footer_copyright">© 2025 Forest Ad Land. All rights reserved.</div>
+
+      <div class="footer-disclaimer" data-i18n="footer_disclaimer">Forest Ad Land is a community-driven project. The token is a utility layer inside the ecosystem. This is not financial advice. Always do your own research before participating in any Web3 project.</div>
+    </div>
+  </footer>
+
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+
+  <!-- Scripts -->
+  <script src="index.js"></script>
+
+</body>
+</html>
