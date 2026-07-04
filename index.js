@@ -20,7 +20,7 @@ const translations = {
     badge_grow: "🚀 GROW",
     copy_tooltip: "Copied!",
     cta_telegram: "Join Telegram",
-    cta_twitter: "Follow on X",
+    cta_twitter: "Follow",
     scroll_text: "Scroll",
 
     // About
@@ -143,7 +143,7 @@ const translations = {
     // Footer
     footer_tagline: "Own. Build. Grow.",
     footer_ca_prefix: "CA: 2iqdyuBEtNeR15PtmuWAZBorK1hEmWhYnpY71j42pump",
-    footer_copyright: "© 2025 Forest Ad Land. All rights reserved.",
+    footer_copyright: "© 2026 Forest Ad Land. All rights reserved.",
     footer_disclaimer: "Forest Ad Land is a community-driven project. The token is a utility layer inside the ecosystem. This is not financial advice. Always do your own research before participating in any Web3 project.",
   },
 
@@ -163,7 +163,7 @@ const translations = {
     badge_grow: "🚀 РАСТИ",
     copy_tooltip: "Скопировано!",
     cta_telegram: "Telegram",
-    cta_twitter: "Подписаться на X",
+    cta_twitter: "Подписаться",
     scroll_text: "Листать",
 
     // About
@@ -286,7 +286,7 @@ const translations = {
     // Footer
     footer_tagline: "Владей. Строй. Расти.",
     footer_ca_prefix: "CA: 2iqdyuBEtNeR15PtmuWAZBorK1hEmWhYnpY71j42pump",
-    footer_copyright: "© 2025 Forest Ad Land. Все права защищены.",
+    footer_copyright: "© 2026 Forest Ad Land. Все права защищены.",
     footer_disclaimer: "Forest Ad Land — это проект, управляемый сообществом. Токен является утилитарным слоем внутри экосистемы. Это не финансовый совет. Всегда проводите собственное исследование перед участием в любом Web3-проекте.",
   }
 };

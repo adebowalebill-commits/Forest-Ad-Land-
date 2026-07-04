@@ -217,10 +217,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav.scrolled {
-  background: rgba(10, 10, 10, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 1px 0 rgba(212, 168, 70, 0.1);
+  background: rgba(10, 14, 10, 0.35);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-bottom: 1px solid rgba(212, 168, 70, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .nav-inner {
@@ -828,7 +829,7 @@ h1, h2, h3, h4, h5, h6 {
    ============================================ */
 .token-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
   margin-top: var(--space-xl);
 }
