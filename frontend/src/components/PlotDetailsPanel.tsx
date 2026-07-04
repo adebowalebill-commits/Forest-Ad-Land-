@@ -5,7 +5,7 @@ import { MapPin, User, Tag, Image as ImageIcon, Link as LinkIcon, ExternalLink, 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { PublicKey, Transaction } from '@solana/web3.js';
-import { createTransferInstruction, getAssociatedTokenAddress } from '@solana/spl-token';
+import { getAssociatedTokenAddress } from '@solana/spl-token';
 import type { PlotData } from '../pages/Explore';
 import { api } from '../lib/api';
 
@@ -78,12 +78,15 @@ export default function PlotDetailsPanel({ plot, onClose, onPlotUpdated }: PlotD
       // Amount in raw units (6 decimals)
       const amount = plotPrice.flAmount * 1_000_000;
 
+      const { createTransferCheckedInstruction } = await import('@solana/spl-token');
       transaction.add(
-        createTransferInstruction(
-          userATA,
-          treasuryATA,
-          publicKey,
-          amount
+        createTransferCheckedInstruction(
+          userATA, // source
+          mintPubKey, // mint
+          treasuryATA, // destination
+          publicKey, // owner
+          amount, // amount
+          6 // decimals
         )
       );
 
