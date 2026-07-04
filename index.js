@@ -21,9 +21,6 @@ const translations = {
     copy_tooltip: "Copied!",
     cta_telegram: "Join Telegram",
     cta_twitter: "Follow on X",
-    pillar_own: "OWN",
-    pillar_build: "BUILD",
-    pillar_grow: "GROW",
     scroll_text: "Scroll",
 
     // About
@@ -167,9 +164,6 @@ const translations = {
     copy_tooltip: "Скопировано!",
     cta_telegram: "Telegram",
     cta_twitter: "Подписаться на X",
-    pillar_own: "ВЛАДЕЙ",
-    pillar_build: "СТРОЙ",
-    pillar_grow: "РАСТИ",
     scroll_text: "Листать",
 
     // About

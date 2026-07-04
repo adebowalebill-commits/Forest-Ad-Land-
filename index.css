@@ -578,32 +578,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--space-sm);
 }
 
-.hero-pillars {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-xl);
-  margin-top: var(--space-lg);
-}
 
-.hero-pillar {
-  text-align: center;
-}
-
-.hero-pillar-title {
-  font-family: var(--font-heading);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--color-gold);
-}
-
-.hero-pillar-line {
-  width: 40px;
-  height: 2px;
-  background: var(--color-gold-dark);
-  margin: 0.5rem auto 0;
-}
 
 
 /* ============================================
