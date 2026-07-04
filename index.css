@@ -605,39 +605,6 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0.5rem auto 0;
 }
 
-/* Scroll indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  animation: bounce 2s infinite;
-}
-
-.scroll-indicator span {
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
-
-.scroll-indicator .scroll-arrow {
-  width: 20px;
-  height: 20px;
-  border-right: 2px solid var(--color-gold-dark);
-  border-bottom: 2px solid var(--color-gold-dark);
-  transform: rotate(45deg);
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(8px); }
-}
 
 /* ============================================
    ABOUT SECTIONS (Shared)
@@ -1400,6 +1367,10 @@ h1, h2, h3, h4, h5, h6 {
   .hero-logo {
     width: 100px;
     height: 100px;
+  }
+
+  .nav-logo-text {
+    display: none;
   }
 
   .hero-badges {

@@ -66,7 +66,7 @@ const translations = {
 
     // Token
     token_label: "Token Utility",
-    token_title: "$FAL Token",
+    token_title: "$FL Token",
     token_subtitle: "The utility layer inside the Forest Ad Land ecosystem. Used for land actions, advertising, upgrades, rewards, marketplace activity, and community incentives.",
     token_card1_title: "Land Actions",
     token_card1_text: "Acquire, upgrade, and manage your digital property.",
@@ -212,7 +212,7 @@ const translations = {
 
     // Token
     token_label: "Утилитарность токена",
-    token_title: "Токен $FAL",
+    token_title: "Токен $FL",
     token_subtitle: "Утилитарный слой внутри экосистемы Forest Ad Land. Используется для действий с землёй, рекламы, улучшений, наград, торговой площадки и поощрений сообщества.",
     token_card1_title: "Действия с землёй",
     token_card1_text: "Приобретайте, улучшайте и управляйте своей цифровой собственностью.",
