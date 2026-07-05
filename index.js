@@ -139,6 +139,10 @@ const translations = {
     social_email_desc: "Business inquiries and partnerships",
     social_join: "Join Now →",
     social_contact: "Contact Us →",
+    social_yt_title: "YouTube",
+    social_yt_desc: "Video content and updates",
+    social_ig_title: "Instagram",
+    social_ig_desc: "Visuals and behind the scenes",
 
     // Footer
     footer_tagline: "Own. Build. Grow.",
@@ -282,6 +286,10 @@ const translations = {
     social_email_desc: "Деловые запросы и партнёрства",
     social_join: "Присоединиться →",
     social_contact: "Связаться →",
+    social_yt_title: "YouTube",
+    social_yt_desc: "Видеоконтент и обновления",
+    social_ig_title: "Instagram",
+    social_ig_desc: "Визуал и закулисье",
 
     // Footer
     footer_tagline: "Владей. Строй. Расти.",
